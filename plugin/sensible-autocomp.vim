@@ -5,7 +5,7 @@ function! Complete()
 	if !pumvisible()
 		if (v:char == '/' || v:char == '$' || v:char == '~' || v:char == '.')
 			call feedkeys("\<c-x>\<c-f>")
-		elseif ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || (v:char >= '0' || v:char == '0'))
+		elseif ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || (v:char >= '0' || v:char == '0') && (v:char != '{' && v:char != '}'))
 			call feedkeys("\<plug>vim_completes_me_forward")
 		endif
 	endif
