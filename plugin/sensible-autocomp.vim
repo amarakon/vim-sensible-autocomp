@@ -1,3 +1,5 @@
+let b:vcm_tab_complete = 'omni'
+
 function! Cache()
 	if &ft =~ 'netrw\|gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
@@ -6,14 +8,14 @@ function! Cache()
 endfunction
 
 function! Complete()
-	if pumvisible() || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
+	if pumvisible() || !(getline('.') =~ '^\s*$') || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
 	endif
 
-	if (v:char == '/' || v:char == '$' || v:char == '~' || v:char == '.')
+	if (v:char == '/')
 		call feedkeys("\<c-x>\<c-f>")
-	elseif ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z') || (v:char >= '0' || v:char == '0') && (v:char != '{' && v:char != '}'))
-		call feedkeys("\<plug>vim_completes_me_forward")
+	elseif ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+		call feedkeys("\<c-x>\<c-o>")
 	endif
 endfunction
 
