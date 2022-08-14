@@ -8,7 +8,7 @@ function! Cache()
 endfunction
 
 function! Complete()
-	if pumvisible() || !(getline('.') =~ '^\s*$') || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
+	if pumvisible() || getline('.') =~ '^\s*$' || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
 	endif
 
