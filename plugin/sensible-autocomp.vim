@@ -8,13 +8,16 @@ function! Cache()
 endfunction
 
 function! Complete()
-	if pumvisible() || getline('.') =~ '^\s*$' || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
+	let line = getline('.')
+	let pos = col('.') - 1
+
+	if pumvisible() || line =~ '^\s*$\|^#!.*$' || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
 	endif
 
-	if (v:char == '/')
+	if v:char == '/' || line[pos - 1] == '/'
 		call feedkeys("\<c-x>\<c-f>")
-	elseif ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+	elseif (v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z')
 		call feedkeys("\<c-x>\<c-o>")
 	endif
 endfunction
