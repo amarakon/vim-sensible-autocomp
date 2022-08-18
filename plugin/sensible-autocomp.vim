@@ -11,7 +11,8 @@ function! Complete()
 	let line = getline('.')
 	let pos = col('.') - 1
 
-	if pumvisible() || line =~ '^#!.*$' || &ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
+	if pumvisible() || line =~ '^#!.*$' ||
+				\&ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
 	endif
 
