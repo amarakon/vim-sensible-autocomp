@@ -4,7 +4,6 @@ Vim Sensible AutoComp
 ## Contents
 
 -   [Introduction](#introduction)
--   [Dependencies](#dependencies)
 -   [Installation](#installation)
     -   [Vim](#vim)
     -   [Neovim](#neovim)
@@ -32,10 +31,6 @@ If you are typing locations to files
 
 That is how it **should** work. Also, there are no configuration options
 because there does not need to be. It is sensible by default.
-
-## Dependencies
-
--   [VimCompletesMe](https://github.com/ackyshake/VimCompletesMe)
 
 ## Installation
 
