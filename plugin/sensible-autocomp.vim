@@ -34,5 +34,6 @@ function! Main()
 	endif
 endfunction
 
+set complete-=t
 autocmd vimenter * call Cache()
 autocmd insertcharpre * call Main()
