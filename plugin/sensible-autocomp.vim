@@ -15,10 +15,10 @@ endfunction
 inoremap <expr> <plug>complete Complete()
 
 function! Cache()
+	if index(g:exceptions, &ft) >= 0 | return | endif
 	if &omnifunc != "syntaxcomplete#Complete"
 		set omnifunc=syntaxcomplete#Complete
 	endif
-	if index(g:exceptions, &ft) >= 0 | return | endif
 	call feedkeys("a\<c-x>\<c-o>\<escape>")
 endfunction
 
@@ -40,4 +40,4 @@ endfunction
 
 autocmd vimenter * set shortmess+=c completeopt+=menuone,noinsert pumheight=5
 autocmd filetype * call Cache()
-autocmd insertcharpre * call Main()
+"autocmd insertcharpre * call Main()
