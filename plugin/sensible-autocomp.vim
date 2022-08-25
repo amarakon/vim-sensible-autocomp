@@ -1,4 +1,4 @@
-let g:exceptions = ['', 'nerw', 'fzf', 'gitcommit', 'text', 'markdown', 'rmd',
+let g:exceptions = ['', 'netrw', 'fzf', 'gitcommit', 'text', 'markdown', 'rmd',
 			\'tex', 'plaintex']
 
 function! Complete()
