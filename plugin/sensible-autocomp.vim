@@ -1,5 +1,5 @@
-let g:exceptions = ['', 'netrw', 'fzf', 'gitcommit', 'text', 'markdown', 'rmd',
-			\'tex', 'plaintex']
+let g:exceptions = ['', 'netrw', 'help', 'fzf', 'gitcommit', 'text', 'markdown',
+			\'rmd']
 
 function! Complete()
 	" Keyword completion
@@ -40,4 +40,4 @@ endfunction
 
 autocmd vimenter * set shortmess+=c completeopt+=menuone,noinsert pumheight=5
 autocmd filetype * call Cache()
-"autocmd insertcharpre * call Main()
+autocmd insertcharpre * call Main()
