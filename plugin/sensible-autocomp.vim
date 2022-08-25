@@ -12,7 +12,7 @@ endfunction
 inoremap <expr> <plug>complete Complete()
 
 function! Cache()
-	if &ft =~ 'netrw\|gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
+	if &ft =~ '\|netrw\|fzf\|gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
 		return
 	endif
 	call feedkeys("a\<c-x>\<c-o>\<escape>")
