@@ -23,7 +23,11 @@ function! Cache()
 endfunction
 
 function! Main()
-	if pumvisible() | return | endif
+	if pumvisible() ||
+				\synIDattr(synIDtrans(synID(line('.'), col('.') - 1, 1)),
+				\'name') == "Comment"
+		return
+	endif
 
 	if v:char == '/' || getline('.')[col('.') - 2] == '/'
 		call feedkeys("\<c-x>\<c-f>")
