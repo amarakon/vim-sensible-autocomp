@@ -1,3 +1,6 @@
+let g:exceptions = ['', 'nerw', 'fzf', 'gitcommit', 'text', 'markdown', 'rmd',
+			\'tex', 'plaintex']
+
 function! Complete()
 	" Keyword completion
 	if exists('b:completion_tried') && b:completion_tried
@@ -12,28 +15,25 @@ endfunction
 inoremap <expr> <plug>complete Complete()
 
 function! Cache()
-	if &ft =~ '\|netrw\|fzf\|gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
-		return
+	if &omnifunc != "syntaxcomplete#Complete"
+		set omnifunc=syntaxcomplete#Complete
 	endif
+	if index(g:exceptions, &ft) >= 0 | return | endif
 	call feedkeys("a\<c-x>\<c-o>\<escape>")
 endfunction
 
 function! Main()
-	let line = getline('.')
-	let pos = col('.') - 1
+	if pumvisible() | return | endif
 
-	if pumvisible() || line =~ '^#!.*$' ||
-				\&ft =~ 'gitcommit\|text\|markdown\|rmd\|tex\|plaintex'
-		return
-	endif
-
-	if v:char == '/' || line[pos - 1] == '/'
+	if v:char == '/' || getline('.')[col('.') - 2] == '/'
 		call feedkeys("\<c-x>\<c-f>")
-	elseif (v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z')
+	elseif ((v:char >= 'a' && v:char <= 'z') ||
+				\(v:char >= 'A' && v:char <= 'Z')) &&
+				\index(g:exceptions, &ft) < 0
 		call feedkeys("\<plug>complete")
 	endif
 endfunction
 
-set complete-=t
-autocmd vimenter * call Cache()
+autocmd vimenter * set shortmess+=c completeopt+=menuone,noinsert pumheight=5
+autocmd filetype * call Cache()
 autocmd insertcharpre * call Main()
